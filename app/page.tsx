@@ -3,7 +3,6 @@ import { Montserrat } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Pizza, ShoppingBag } from "lucide-react";
 import Link from "next/link";
-import DashboardButton from "@/components/helper/dashboard-button";
 const font = Montserrat({
   subsets: ["latin"],
   weight: ["600"]
@@ -37,7 +36,6 @@ export default function Home() {
                       </div>
                   </div>
                 </Link>
-                <DashboardButton/>
               </div>
             </div>
            

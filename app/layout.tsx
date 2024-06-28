@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
+import NavbarAvatar from "@/components/helper/navbar-avatar";
 const font = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,7 +18,10 @@ export default function RootLayout({
   return (
     <SessionProvider>
     <html lang="en">
-        <body className={font.className}>{children}</body>
+        <body className={font.className}>
+          <NavbarAvatar/>
+          <main>{children}</main>
+        </body>
       </html>
     </SessionProvider>
   
