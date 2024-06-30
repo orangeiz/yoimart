@@ -1,8 +1,11 @@
 'use client';
+import DashboardFood from '@/components/helper/dashboard/dashboard-food';
 import DashboardProfile from '@/components/helper/dashboard/dashboard-profile';
 import DashboardSettings from '@/components/helper/dashboard/dashboard-settings';
+import DashboardShop from '@/components/helper/dashboard/dashboard-shop';
 import DashboardSidebar from '@/components/helper/dashboard/dashboard-sidebar';
 import DashboardStore from '@/components/helper/dashboard/dashboard-store';
+import DashboardWishlist from '@/components/helper/dashboard/dashboard-wishlist';
 import { Edit } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
@@ -18,10 +21,10 @@ const ExampleComponent = () => {
   }
   const user = session.user;
   return (
-    <div className='flex flex-row gap-x-5 bg-gradient-to-r from-white to-violet-100'>
+    <div className='min-h-screen flex flex-row gap-x-5 bg-gradient-to-r from-white to-violet-100'>
       <DashboardSidebar onSelectItem={setSelectedItem} selectedItem={selectedItem} />
       <div className='flex flex-row '>
-      <div className='bg-custom1 w-1 h-screen'/>      
+      <div className='bg-custom1 w-1 h-full'/>      
       {selectedItem==1&&(
         <div className='w-screen flex flex-col  gap-y-10'>
           <DashboardProfile username={user?.name} imgUrl={user?.image} backgroundimgUrl={user?.imageBackground}/>
@@ -48,17 +51,17 @@ const ExampleComponent = () => {
       )}
       {selectedItem===3&&(
         <div>
-
+          <DashboardShop/>
         </div>
       )}
         {selectedItem===4&&(
         <div>
-
+          <DashboardFood/>
         </div>
       )}
         {selectedItem===5&&(
         <div>
-
+          <DashboardWishlist/>
         </div>
       )}
         {selectedItem===6&&(

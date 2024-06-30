@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import NavbarAvatar from "@/components/helper/navbar-avatar";
+import {NextUIProvider} from "@nextui-org/system";
 const font = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,14 +17,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SessionProvider>
-    <html lang="en">
-        <body className={font.className}>
-          <NavbarAvatar/>
-          <main>{children}</main>
-        </body>
-      </html>
-    </SessionProvider>
-  
+      <SessionProvider>
+        <html lang="en">
+            <body className={font.className}>
+              <NavbarAvatar/>
+              <main>{children}</main>
+            </body>
+          </html>
+      </SessionProvider>
+    
+
   );
 }
