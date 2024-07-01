@@ -17,12 +17,18 @@ export async function POST(req: NextRequest) {
     if (!phone && !email) {
         return new NextResponse("Phone Number Or Email Not Found", { status: 400 });
     }
+    if (username) {
+        const sameUserName = await db.select().from(users).where(eq(users.name, username)).execute();
+        if (sameUserName.length > 0) {
+            return new NextResponse("UserName Already exists", { status: 409 });
+        }
+    }
 
     // Check if email already exists
     if (email) {
         const sameUserEmail = await db.select().from(users).where(eq(users.email, email)).execute();
         if (sameUserEmail.length > 0) {
-            return new NextResponse("Email Already exists", { status: 400 });
+            return new NextResponse("Email Already exists", { status: 409 });
         }
     }
 
@@ -30,7 +36,7 @@ export async function POST(req: NextRequest) {
     if (phone) {
         const sameUserPhone = await db.select().from(users).where(eq(users.phone, phone)).execute();
         if (sameUserPhone.length > 0) {
-            return new NextResponse("Phone Already exists", { status: 400 });
+            return new NextResponse("Phone Already exists", { status: 409 });
         }
     }
 

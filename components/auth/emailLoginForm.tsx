@@ -108,7 +108,7 @@ const EmailLoginForm = () => {
       backhref="/register"
       showSocials
       changeoptionhref="/login"
-      forgotpasswordhref="/email/forgotpassword"
+      forgotpasswordhref="/forgotpassword"
     >
       {!showOtpForm && !otpSent && (
         <Form {...form}>

@@ -101,7 +101,7 @@ const PhoneLoginForm = () => {
           backhref="/register"
           showSocials
           changeoptionhref="/login"
-          forgotpasswordhref="/phone/forgotpassword"
+          forgotpasswordhref="/forgotpassword"
         >
           {!showOtpForm && !otpSent && (
             <Form {...form}>

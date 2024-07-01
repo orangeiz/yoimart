@@ -1,5 +1,6 @@
 'use client';
 import DashboardFood from '@/components/helper/dashboard/dashboard-food';
+import DashboardPayment from '@/components/helper/dashboard/dashboard-payment';
 import DashboardProfile from '@/components/helper/dashboard/dashboard-profile';
 import DashboardSettings from '@/components/helper/dashboard/dashboard-settings';
 import DashboardShop from '@/components/helper/dashboard/dashboard-shop';
@@ -66,7 +67,7 @@ const ExampleComponent = () => {
       )}
         {selectedItem===6&&(
         <div>
-
+          <DashboardPayment/>
         </div>
       )}
       {selectedItem===7&&(

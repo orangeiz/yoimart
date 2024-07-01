@@ -18,13 +18,13 @@ export async function PATCH(req: NextRequest) {
     if (otpVerified && phone) {
       verifyUser = await db.update(users)
         .set({ otpVerified: otpVerified })
-        .where(eq(phone, users.phone));
+        .where(eq(phone, users.phone)).execute();
     }
 
     if (email && emailVerified) {
       verifyUser = await db.update(users)
         .set({ emailVerified: emailVerified })
-        .where(eq(email, users.email));
+        .where(eq(email, users.email)).execute();
     }
 
     if (!verifyUser) {

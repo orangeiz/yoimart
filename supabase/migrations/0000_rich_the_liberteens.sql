@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS "user" (
 	"id" text PRIMARY KEY NOT NULL,
 	"name" text,
 	"email" text,
-	"email_verified" boolean DEFAULT false,
+	"emailVerified" boolean DEFAULT false,
 	"email_verification_token" text,
 	"password" text,
 	"image" text,

@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1719344691092,
-      "tag": "0000_low_toro",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1719345156439,
-      "tag": "0001_naive_talon",
+      "when": 1719837783813,
+      "tag": "0000_rich_the_liberteens",
       "breakpoints": true
     }
   ]
