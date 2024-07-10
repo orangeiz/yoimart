@@ -1,4 +1,6 @@
+import { profile } from "console";
 import * as z from "zod";
+import { storeType } from "./schema";
 export const regInSchema = z.object({
   email: z.string().email(({ message: "Invalid email" })).optional().or(z.literal('')),
   password: z.string()
@@ -53,3 +55,12 @@ export const editProfileSchema=z.object({
   profileImg:z.string().optional().or(z.literal('')),
   profileBackgroundImg:z.string().optional().or(z.literal('')),  
 })
+export const storeSchema = z.object({
+  name: z.string().min(1, { message: "Name is required" }),
+  type: z.enum(['food', 'shop']),
+});
+export  const billbordSchema=z.object({
+  name:z.string().min(1,{message:"Name is required"}),
+  imageUrl:z.string()
+})
+

@@ -1,5 +1,6 @@
 import {create} from "zustand"
-export type ModalType="editProfile"
+import { billboards, stores } from "@/lib/schema";
+export type ModalType="editProfile"|"addStore"|"addBillboard"
 interface ModalData{
     User?:{
         id: string;
@@ -9,6 +10,8 @@ interface ModalData{
         image?: string | null;
         imageBackground?: string | null;
       };
+      Store?:typeof stores.$inferSelect
+      Billboard?:typeof billboards.$inferSelect
     }
 interface ModalStore{
     type:ModalType|null

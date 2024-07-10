@@ -60,7 +60,7 @@ export const EditProfileModal = () => {
       const response=await axios.patch(`/api/users/${User?.id}`, values);
       const updatedUser=response.data;
       await update({
-        ...session,
+        ...session,...token,
         user: {
           ...session?.user,
           name: updatedUser.name,
