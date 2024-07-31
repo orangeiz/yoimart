@@ -102,7 +102,7 @@ export const FileUpload = ({ onChange, value, endpoint }: FileUploadProp) => {
             )}
 
             {(!value || endpoint === "multipleImage") && (
-                <UploadDropzone
+                <UploadDropzone className="border-3 border-solid border-black"
                     endpoint={endpoint}
                     onClientUploadComplete={handleUploadComplete}
                     onUploadError={(error: Error) => {

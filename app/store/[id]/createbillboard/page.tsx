@@ -7,7 +7,7 @@ const CreateBillboardpage = () => {
     const {onOpen}=UseModal()
     return (
         <div>
-      <BlueButton   icon={<Plus/>} sublabel="Add" onClick={()=>{onOpen("addBillboard")}} label="Create New Store"/>
+      <BlueButton   icon={<Plus/>} sublabel="Add" onClick={()=>{onOpen("addBillboard")}} label="Create New Billboard"/>
 
         </div>
  );

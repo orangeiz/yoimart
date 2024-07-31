@@ -1,6 +1,6 @@
 import {create} from "zustand"
 import { billboards, stores } from "@/lib/schema";
-export type ModalType="editProfile"|"addStore"|"addBillboard"
+export type ModalType="editProfile"|"addStore"|"addBillboard"|"editStore"|"editBillboard"
 interface ModalData{
     User?:{
         id: string;
@@ -25,5 +25,5 @@ export const UseModal=create<ModalStore>((set)=>({
     data:{},
     isOpen:false,
     onOpen:(type,data={})=>set({isOpen:true,type,data}),
-    OnClose:()=>set({type:null,isOpen:false})
-}))
+    OnClose:()=>set({type:null,isOpen:false})}
+))

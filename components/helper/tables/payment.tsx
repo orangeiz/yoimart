@@ -42,8 +42,8 @@ const data: Payment[] = [
     name: "Blue Gown",
     price: 474,
     delivery: "pending",
-    PurchaseDate:"22 Sept 2024",
-    RecievedDate:"Not Reached"
+    PurchaseDate: "22 Sept 2024",
+    RecievedDate: "Not Reached",
   },
   {
     id: "2",
@@ -51,8 +51,8 @@ const data: Payment[] = [
     name: "White Wedding Dress",
     price: 1080,
     delivery: "completed",
-    PurchaseDate:"22 Sept 2024",
-    RecievedDate:"26 Sept 2024"
+    PurchaseDate: "22 Sept 2024",
+    RecievedDate: "26 Sept 2024",
   },
   // Add more data as needed
 ];
@@ -63,11 +63,11 @@ export type Payment = {
   name: string;
   price: number;
   delivery: "pending" | "completed";
-  PurchaseDate:string,
-  RecievedDate:string
+  PurchaseDate: string;
+  RecievedDate: string;
 };
 
-export const columns: ColumnDef<Payment>[] = [
+const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "photo",
     header: "Photo",
@@ -77,7 +77,7 @@ export const columns: ColumnDef<Payment>[] = [
           src={row.getValue("photo")}
           alt={row.getValue("name")}
           fill
-          objectFit="cover"
+          style={{ objectFit: "cover" }}
         />
       </div>
     ),
@@ -85,19 +85,35 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "name",
     header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      >
-        Name
-        <CaretSortIcon className="ml-2 h-4 w-4" />
-      </Button>
+      <div>
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Name
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+        <Input
+          placeholder="Filter name..."
+          value={(column.getFilterValue() as string) ?? ""}
+          onChange={(event) => column.setFilterValue(event.target.value)}
+        />
+      </div>
     ),
     cell: ({ row }) => <div>{row.getValue("name")}</div>,
   },
   {
     accessorKey: "price",
-    header: () => <div className="text-right">Price</div>,
+    header: ({ column }) => (
+      <div className="text-right">
+        <div>Price</div>
+        <Input
+          placeholder="Filter price..."
+          value={(column.getFilterValue() as string) ?? ""}
+          onChange={(event) => column.setFilterValue(event.target.value)}
+        />
+      </div>
+    ),
     cell: ({ row }) => {
       const price = parseFloat(row.getValue("price"));
 
@@ -109,24 +125,58 @@ export const columns: ColumnDef<Payment>[] = [
 
       return <div className="text-right font-medium">{formatted}</div>;
     },
+    filterFn: (row, columnId, value) => {
+      const rowValue = row.getValue(columnId);
+      if (typeof rowValue === "number") {
+        return rowValue >= parseFloat(value);
+      }
+      return false;
+    },
   },
   {
     accessorKey: "PurchaseDate",
-    header: "Purchase Date",
+    header: ({ column }) => (
+      <div>
+        Purchase Date
+        <Input
+          placeholder="Filter purchase date..."
+          value={(column.getFilterValue() as string) ?? ""}
+          onChange={(event) => column.setFilterValue(event.target.value)}
+        />
+      </div>
+    ),
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("PurchaseDate")}</div>
     ),
   },
   {
     accessorKey: "RecievedDate",
-    header: "Recieved Date",
+    header: ({ column }) => (
+      <div>
+        Recieved Date
+        <Input
+          placeholder="Filter recieved date..."
+          value={(column.getFilterValue() as string) ?? ""}
+          onChange={(event) => column.setFilterValue(event.target.value)}
+        />
+      </div>
+    ),
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("RecievedDate")}</div>
     ),
   },
   {
     accessorKey: "delivery",
-    header: "Delivery",
+    header: ({ column }) => (
+      <div>
+        Delivery
+        <Input
+          placeholder="Filter delivery..."
+          value={(column.getFilterValue() as string) ?? ""}
+          onChange={(event) => column.setFilterValue(event.target.value)}
+        />
+      </div>
+    ),
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("delivery")}</div>
     ),

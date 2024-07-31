@@ -49,7 +49,7 @@ const Footer = () => {
                 </div>
                 <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
                 <div className="sm:flex sm:items-center sm:justify-between">
-                    <span className="text-lg text-white text-center dark:text-gray-400">© 2024 <a href="/" className="hover:underline">Yoimart</a>. All Rights Reserved.</span>
+                    <span className="text-lg text-white text-center dark:text-gray-400">© 2024 <a href="/" className="hover:underline">Status-Code-1</a>. All Rights Reserved.</span>
                     <div className="flex mt-4 sm:justify-center sm:mt-0">
                         <a href="#" className="text-blue-300 hover:text-white dark:hover:text-white">
                             <FaFacebook className="w-4 h-4" />

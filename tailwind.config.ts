@@ -20,6 +20,12 @@ const config = {
       },
     },
     extend: {
+      fontFamily:{
+        zodiak:['Zodiak','sans-serif'],
+        chillax:['Chillax','sans-serif'],
+        bespokesans:['BespokeSans','sans-serif']
+      },
+
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

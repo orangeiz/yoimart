@@ -7,6 +7,7 @@ import DashboardShop from '@/components/helper/dashboard/dashboard-shop';
 import DashboardSidebar from '@/components/helper/dashboard/dashboard-sidebar';
 import DashboardStore from '@/components/helper/dashboard/dashboard-store';
 import DashboardWishlist from '@/components/helper/dashboard/dashboard-wishlist';
+import StoreTable from '@/components/helper/tables/stores';
 import { Edit } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
@@ -76,7 +77,7 @@ const ExampleComponent = () => {
         </div>)}
         {selectedItem===8&&(
         <div>
-
+          <StoreTable id={user?.id as string}/>
         </div>
       )}
       </div>

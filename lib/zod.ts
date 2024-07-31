@@ -1,6 +1,6 @@
 import { profile } from "console";
 import * as z from "zod";
-import { storeType } from "./schema";
+import { restaurents, storeType, subcategories } from "./schema";
 export const regInSchema = z.object({
   email: z.string().email(({ message: "Invalid email" })).optional().or(z.literal('')),
   password: z.string()
@@ -59,8 +59,98 @@ export const storeSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
   type: z.enum(['food', 'shop']),
 });
+export const editStoreSchema=z.object({
+  name:z.string().min(1,{message:"Name is required"}),
+  type:z.enum(['food','shop',''])
+})
 export  const billbordSchema=z.object({
   name:z.string().min(1,{message:"Name is required"}),
   imageUrl:z.string()
 })
-
+export const editBillboardSchema=z.object({
+  name:z.string().min(1,{message:"Name is required"}),
+  imageUrl:z.string()
+})
+const colourSchema = z.object({
+  name: z.string().min(1, { message: "Colour name is required" }),
+  hex: z.string().regex(/^#([0-9A-F]{3}){1,2}$/i, { message: "Invalid hex colour code" })
+});
+const sizeSchema=z.object({  
+  name: z.string().min(1, { message: "Size name is required" }),
+})
+const genderschema=z.object({
+  name: z.string().min(1, { message: "Gender name is required" }),
+})
+const occasionSchema=z.object({
+  name: z.string().min(1, { message: "Occasion name is required" }),
+})
+export const addproductSchema = z.object({
+  name: z.string().min(1, { message: "Name is required" }),
+  description:z.string().min(1,{message:"Description is required"}),
+  category: z.string().min(1, { message: "Category required" }),
+  subcategory: z.string().min(1, { message: "Subcategory required" }),
+  Colours: z.array(colourSchema).nonempty({ message: "At least one colour is required" }),
+  Sizes: z.array(sizeSchema).nonempty({ message: "At least one size is required" }),
+  Genders: z.array(genderschema).nonempty({ message: "At least one gender is required" }),
+  images: z.array(z.string()).nonempty({ message: "At least one image is required" }),
+  isArchived: z.boolean(),
+  isFeatured: z.boolean(),
+  COD:z.boolean(),
+  noAvailable: z.string().transform((val) => parseInt(val, 10)),
+  discountPer: z.string().transform((val) => parseInt(val, 10)),
+  originalPrice: z.string().transform((val) => parseInt(val, 10)),
+  ageRated:z.string().transform((val)=>parseInt(val,10)),
+  Occasions:z.array(occasionSchema).nonempty({ message: "At least one occasion is required" }),
+  supplier:z.string().min(1, { message: " Supplier is required" }),
+});
+export const editproductSchema=z.object({ name: z.string().min(1, { message: "Name is required" }),
+description:z.string().min(1,{message:"Description is required"}),
+category: z.string().min(1, { message: "Category required" }),
+subcategory: z.string().min(1, { message: "Subcategory required" }),
+Colours: z.array(colourSchema).nonempty({ message: "At least one colour is required" }),
+Sizes: z.array(sizeSchema).nonempty({ message: "At least one size is required" }),
+Genders: z.array(genderschema).nonempty({ message: "At least one gender is required" }),
+images: z.array(z.string()).nonempty({ message: "At least one image is required" }),
+isArchived: z.boolean(),
+isFeatured: z.boolean(),
+COD:z.boolean(),
+noAvailable: z.string().transform((val) => parseInt(val, 10)),
+discountPer: z.string().transform((val) => parseInt(val, 10)),
+originalPrice: z.string().transform((val) => parseInt(val, 10)),
+ageRated:z.string().transform((val)=>parseInt(val,10)),
+Occasions:z.array(occasionSchema).nonempty({ message: "At least one occasion is required" }),
+supplier:z.string().min(1, { message: " Supplier is required" }),
+  
+})
+export const adddeliveryfoodSchema=z.object({
+  name: z.string().min(1, { message: "Name is required" }),
+  description:z.string().min(1,{message:"Description is required"}),
+  category: z.string().min(1, { message: "Category required" }),
+  subcategory: z.string().min(1, { message: "Subcategory required" }),
+  images: z.array(z.string()).nonempty({ message: "At least one image is required" }),
+  isArchived: z.boolean(),
+  isFeatured: z.boolean(),
+  COD:z.boolean(),
+  noAvailable: z.string().transform((val) => parseInt(val, 10)),
+  discountPer: z.string().transform((val) => parseInt(val, 10)),
+  originalPrice: z.string().transform((val) => parseInt(val, 10)),
+  restaurentAddress:z.string(),
+  restaurentName:z.string(),
+  restaurentImage:z.string()
+})
+export const editdeliveryfoodSchema=z.object({
+  name: z.string().min(1, { message: "Name is required" }),
+  description:z.string().min(1,{message:"Description is required"}),
+  category: z.string().min(1, { message: "Category required" }),
+  subcategory: z.string().min(1, { message: "Subcategory required" }),
+  images: z.array(z.string()).nonempty({ message: "At least one image is required" }),
+  isArchived: z.boolean(),
+  isFeatured: z.boolean(),
+  COD:z.boolean(),
+  noAvailable: z.string().transform((val) => parseInt(val, 10)),
+  discountPer: z.string().transform((val) => parseInt(val, 10)),
+  originalPrice: z.string().transform((val) => parseInt(val, 10)),
+  restaurentAddress:z.string(),
+  restaurentName:z.string(),
+  restaurentImage:z.string()
+})
