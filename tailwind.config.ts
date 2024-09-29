@@ -23,7 +23,8 @@ const config = {
       fontFamily:{
         zodiak:['Zodiak','sans-serif'],
         chillax:['Chillax','sans-serif'],
-        bespokesans:['BespokeSans','sans-serif']
+        bespokesans:['BespokeSans','sans-serif'],
+        satoshi:['Satoshi','sans-serif']
       },
 
       colors: {
@@ -62,6 +63,12 @@ const config = {
         },
         'custom1': "#746cec",
         'custom2':"#4741ce",
+        'custom3':"#f2f0ea",
+        'custom4':"#010101",
+        'custom5':"#a4a4a4",
+        'custom6':"#fffffe",
+        'custom7':"#ffd803"
+
 
       },
       borderRadius: {

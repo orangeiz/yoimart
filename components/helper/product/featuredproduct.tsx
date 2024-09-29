@@ -16,14 +16,15 @@ interface FeaturedProductProps {
     ratings: number;
     noofratings: number;
     colors: Color[];
+    onClick?:()=>void;
 }
 
-const FeaturedProduct = ({ name, images, supplier, discountPer, originalprice, ratings, noofratings,colors }: FeaturedProductProps) => {
+const FeaturedProduct = ({ name, images, supplier, discountPer, originalprice, ratings, noofratings,colors,onClick}: FeaturedProductProps) => {
     const discountedPrice = originalprice - (originalprice * discountPer / 100);
     const firstimageUrl = images[0];
 
     return (
-        <div className=" bg-white flex flex-col justify-center items-center border-4 border-black">
+        <div className=" bg-white flex flex-col justify-center items-center border-4 border-black hover:border-purple-500 transition-a " onClick={onClick}>
             <div>
                 <div className="relative z-10 w-[300px] h-[300px]">
                     <Image src={firstimageUrl} alt={name} className="object-fit:cover" fill />
@@ -47,7 +48,12 @@ const FeaturedProduct = ({ name, images, supplier, discountPer, originalprice, r
                 </span>
             </div>
             <div className="text-xl font-semibold flex flex-col gap-y-1 text-black">
-                <StarRating rating={ratings} />
+                <div className="flex flex-row  items-center justify-center gap-x-2">
+                    <StarRating rating={ratings} />
+                    <div className="text-xl font-semibold">
+                        {noofratings} Rated
+                    </div>
+                </div>
             </div>
             <div className="flex flex-row py-4 gap-x-4 mt-2">
                 {colors.map(color => (

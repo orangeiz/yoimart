@@ -119,4 +119,8 @@
       font-family: "BespokeSans";
       src: url("../public/fonts/BespokeSans-Variable.ttf");
     }
+    @font-face {
+      font-family: "Satoshi";
+      src: url("../public/fonts/Satoshi-Variable.ttf");
+    }
   }

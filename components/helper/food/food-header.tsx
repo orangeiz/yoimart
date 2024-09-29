@@ -1,9 +1,8 @@
 import { MapPin, ShoppingCart } from "lucide-react";
 import Image from "next/image";
-import ShopSearch from "./shop-search";
-import ShopLanguage from "./shop-language";
+import FoodLanguage from "./food-language";
 
-const ShopHeader = () => {
+const FoodHeader = () => {
     return ( 
     <div className="bg-custom3 flex flex-row justify-between">
         <div className=" flex flex-row items-center gap-x-2">
@@ -17,15 +16,15 @@ const ShopHeader = () => {
                     Malda, 732101
                 </div>
             </div>
-            <ShopSearch/>
+            
         </div>
         <div className=" flex flex-row items-center gap-x-2 pr-12 mr-12">
             <ShoppingCart className="text-purple-600" height={40} width={40}/>
-            <ShopLanguage/>
+            <FoodLanguage/>
         </div>
 
     </div>
     );
 }
  
-export default ShopHeader;
+export default FoodHeader;

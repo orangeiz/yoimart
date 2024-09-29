@@ -154,3 +154,9 @@ export const editdeliveryfoodSchema=z.object({
   restaurentName:z.string(),
   restaurentImage:z.string()
 })
+export const foodreviewSchema=z.object({
+  comment:z.string(),
+  rating: z.string().transform((val) => parseInt(val, 10)) .refine((val) => [1, 2, 3, 4, 5].includes(val), {
+    message: "Rating must be one of 1, 2, 3, 4, or 5",
+  }),
+})

@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import StarRating from "@/components/helper/star-rating";
-
+import { useRouter } from "next/navigation";
 interface Billboard {
     imageUrl: string | null;
 }
@@ -22,13 +22,14 @@ interface Color {
     hexValue: string | null;
 }
 interface Product {
+    id:string;
     name: string;
     imageUrl: string[];
     supplier: string;
     discountPer: number;
     originalprice: number;
     ratings: number;
-    noofratings: number;
+    noRating: number;
     colors: Color[];
 }
 
@@ -40,6 +41,7 @@ interface SubcategoryWithProducts {
 const font2 = Red_Hat_Display({ subsets: ["latin"], weight: ["900"] });
 
 const Shop = () => {
+    const Router=useRouter();
     const [billboardsImageUrls, setBillboardsImageUrls] = useState<string[]>([]);
     const [subcategories, setSubcategories] = useState<SubcategoryWithProducts[]>([]);
     const [filterProducts,setFilteredProducts]=useState<SubcategoryWithProducts[]>([]);
@@ -189,6 +191,7 @@ const Shop = () => {
                             <div className="flex flex-wrap justify-center gap-4">
                                 {subcategory.productfromSubcategory.map((product, index) => (
                                     <FeaturedProduct
+                                        onClick={()=>Router.push(`/shop/product/${product.id}`)}
                                         key={index}
                                         name={product.name}
                                         images={product.imageUrl}
@@ -196,7 +199,7 @@ const Shop = () => {
                                         discountPer={product.discountPer}
                                         originalprice={product.originalprice}
                                         ratings={product.ratings}
-                                        noofratings={product.noofratings}
+                                        noofratings={product.noRating}
                                         colors={product.colors}
                                     />
                                 ))}

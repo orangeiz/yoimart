@@ -169,12 +169,13 @@ export const products=pgTable('products',{
   description:text('description').notNull(),
   subcategoryId:text('subcategoryId').notNull().references(()=>subcategories.id),
   discountPer:integer('discountPer'),
-  ratings:integer('rating'),
+  ratings:integer('ratings'),
   agerated:integer('agerated'),
   supplier:text('supplier').notNull(),
   occasion:text('occasion').array(),
   imageUrl:text('imageUrl').array(),
   noAvailable:integer('noAvailable'),
+  noRating:integer('noRating'),
   originalprice:integer('originalprice'),
   finalprice:integer('finalprice'),
   isArchived:boolean('isArchieved').default(false),
@@ -212,6 +213,7 @@ export const restaurents=pgTable('restaurents',{
   name:text('name').notNull(),
   imageUrl:text('imageUrl'),
   address:text('address'),
+  ratings:integer('ratings'),
   createdAt:timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().$defaultFn(() => new Date())
 })
@@ -221,12 +223,13 @@ export const deliveryfoods=pgTable('deliveryfoods',{
   name:text('name').notNull(),
   imageUrl:text('imageUrl').array(),
   noAvailable:integer('noAvailable'),
+  noRating:integer('noRating'),
   discountPer:integer('discountPer'),
   description:text('description').notNull(),
   isArchived:boolean('isArchieved').default(false),
   isFeatured:boolean('isFeatured').default(false),
   COD:boolean('COD').default(false),
-  ratings:integer('rating'),
+  ratings:integer('ratings'),
   originalprice:integer('originalprice'),
   finalprice:integer('finalprice'),
   subcategoryId:text('subcategoryId').notNull().references(()=>subcategories.id),
@@ -454,7 +457,7 @@ export const productsRelations = relations(products, ({ one, many }) => ({
   productgenders:many(productgenders),
   orders: many(orders),
   ratings: many(ratings),
-  reviews: many(reviews),
+  productreviews: many(productreviews),
   wishlists: many(wishlists),
   carts: many(carts),
 }));
@@ -525,6 +528,7 @@ export const deliveryfoodsRelations = relations(deliveryfoods, ({ one, many }) =
     references: [restaurents.id],
   }),
   foodOrders: many(foodorders),
+  deliveryfoodreviews: many(deliveryfoodreviews),
 }));
 export const deliveryfoodcouponsRelations = relations(deliveryfoodcoupons, ({ one }) => ({
   deliveryfood: one(deliveryfoods, {
@@ -589,7 +593,27 @@ export const reviewsRelations = relations(reviews, ({ one, many }) => ({
   reactions: many(reviewReactions),
   comments: many(reviewComments),
 }));
+export const productreviewsRelations = relations(productreviews, ({ one }) => ({
+  product: one(products, {
+    fields: [productreviews.productId],
+    references: [products.id],
+  }),
+  review: one(reviews, {
+    fields: [productreviews.reviewsId],
+    references: [reviews.id],
+  }),
+}));
 
+export const deliveryfoodreviewsRelations = relations(deliveryfoodreviews, ({ one }) => ({
+  deliveryFood: one(deliveryfoods, {
+    fields: [deliveryfoodreviews.foodId],
+    references: [deliveryfoods.id],
+  }),
+  review: one(reviews, {
+    fields: [deliveryfoodreviews.reviewsId],
+    references: [reviews.id],
+  }),
+}));
 export const reviewReactionsRelations = relations(reviewReactions, ({ one }) => ({
   user: one(users, {
     fields: [reviewReactions.userId],

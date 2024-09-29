@@ -4,6 +4,7 @@ import { EditProfileModal } from "../modals/edit-profile-modal";
 import { AddStoreModal } from "../modals/add-store-modal";
 import { AddBillboardModel } from "../modals/add-billboard-modal";
 import { EditStoreModal } from "../modals/edit-store-modal";
+import { ShowFoodModal } from "../modals/show-food-modal";
 const ModalProvider = () => {
     const [isMounted,setIsMounted]=useState(false)
     useEffect(()=>{setIsMounted(true)},[]);
@@ -15,6 +16,7 @@ const ModalProvider = () => {
             <AddStoreModal/>
             <EditProfileModal/>
             <EditStoreModal/>
+            <ShowFoodModal/>
             </> 
     );
 }

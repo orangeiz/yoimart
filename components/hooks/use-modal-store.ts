@@ -1,6 +1,10 @@
 import {create} from "zustand"
-import { billboards, stores } from "@/lib/schema";
-export type ModalType="editProfile"|"addStore"|"addBillboard"|"editStore"|"editBillboard"
+import { billboards, categories, deliveryfoods, restaurents, stores } from "@/lib/schema";
+export type ModalType="editProfile"|"addStore"|"addBillboard"|"editStore"|"editBillboard"|"showFood"
+type DeliveryFood= typeof deliveryfoods.$inferSelect
+interface DeliveryFoodWithDetails extends DeliveryFood {
+    restaurant: typeof restaurents.$inferSelect;
+  }
 interface ModalData{
     User?:{
         id: string;
@@ -12,6 +16,9 @@ interface ModalData{
       };
       Store?:typeof stores.$inferSelect
       Billboard?:typeof billboards.$inferSelect
+      DeliveryFood?:DeliveryFoodWithDetails
+      Category?: typeof categories.$inferSelect
+
     }
 interface ModalStore{
     type:ModalType|null
